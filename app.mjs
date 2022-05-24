@@ -30,17 +30,17 @@ $form.addEventListener('submit', (event) => {
   $input.value = ''
 })
 
-function redrawTasks(taskList) {
+function redrawTasks(tasks = []) {
   $taskList.innerHTML = ''
 
-  taskList.forEach(task => {
+  tasks.forEach(task => {
     const $task = renderTask(task)
     $taskList.insertAdjacentHTML('beforeend', $task)
   })
 
   if (!tasks.length) return
 
-  const $footer = renderFooter(taskList)
+  const $footer = renderFooter(tasks)
   $taskList.insertAdjacentHTML('beforeend', $footer)
 
   const $filters = document.querySelector('.filters')
