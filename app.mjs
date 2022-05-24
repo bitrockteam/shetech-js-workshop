@@ -104,55 +104,27 @@ function watchTasks() {
 
 // Item Actions
 function createTask(tasks, task) {
-  const newTask = {
-    id: Date.now(),
-    title: task,
-    status: TaskStatus.TODO,
-  }
-
-  tasks.unshift(newTask)
-
-  return tasks
 }
 
 function toggleTaskStatus(tasks, id) {
-  const foundTask = findTask(tasks, id)
-  const isCompleted = foundTask.status === TaskStatus.COMPLETED
-
-  foundTask.status = isCompleted
-    ? TaskStatus.TODO
-    : TaskStatus.COMPLETED
-
-  return tasks
 }
 
 function findTask(tasks, id) {
-  return tasks.find(task => task.id === Number(id))
 }
 
 function getCompletedTasks(tasks) {
-  return tasks.filter(task => task.status !== TaskStatus.TODO)
 }
 
 function getUncompletedTasks(tasks) {
-  return tasks.filter(task => task.status !== TaskStatus.COMPLETED)
 }
 
 function deleteTask(tasks, id) {
-  return tasks.filter(task => task.id !== Number(id))
 }
 
 function clearTasks(tasks) {
-  tasks = []
-  return tasks
 }
 
 
 // Render counter
 function renderCounter(tasks) {
-  const $counter = document.createElement('div')
-  $counter.classList.add('counter')
-  $counter.innerHTML = `${tasks.length} tasks`
-
-  $taskList.append($counter)
 }
