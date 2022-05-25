@@ -1,7 +1,7 @@
-import { renderTask, renderFooter } from './library/index.mjs'
+import { renderTask, renderFooter } from './library/index.js'
 
 let tasks = []
-export let filter = 'all'
+let filter = 'all'
 
 export const TaskStatus = {
   TODO: 'todo',
@@ -30,17 +30,17 @@ $form.addEventListener('submit', (event) => {
   $input.value = ''
 })
 
-function redrawTasks(tasks = []) {
+function redrawTasks(taskList = []) {
   $taskList.innerHTML = ''
 
-  tasks.forEach(task => {
+  taskList.forEach(task => {
     const $task = renderTask(task)
     $taskList.insertAdjacentHTML('beforeend', $task)
   })
 
-  if (!tasks.length) return
+  if (!tasks.length && !taskList.length) return
 
-  const $footer = renderFooter(tasks)
+  const $footer = renderFooter(taskList, filter)
   $taskList.insertAdjacentHTML('beforeend', $footer)
 
   const $filters = document.querySelector('.filters')
@@ -59,12 +59,14 @@ function redrawTasks(tasks = []) {
     filter = 'completed'
     const completedTasks = getCompletedTasks(tasks)
     redrawTasks(completedTasks)
+    renderCounter(tasks)
   })
 
   $uncompleted.addEventListener('click', () => {
     filter = 'todo'
     const uncompletedTasks = getUncompletedTasks(tasks)
     redrawTasks(uncompletedTasks)
+    renderCounter(tasks)
   })
 
   $clear.addEventListener('click', () => {
@@ -123,7 +125,6 @@ function deleteTask(tasks, id) {
 
 function clearTasks(tasks) {
 }
-
 
 // Render counter
 function renderCounter(tasks) {

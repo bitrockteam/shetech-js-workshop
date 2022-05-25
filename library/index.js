@@ -1,4 +1,4 @@
-import { TaskStatus, filter } from "../app.mjs"
+import { TaskStatus } from "../app.js"
 
 // render functions
 export function renderTask(task) {
@@ -20,14 +20,14 @@ export function renderTask(task) {
   `)
 }
 
-export function renderFooter(taskList) {
+export function renderFooter(taskList, filter) {
   // <div class='total-items'>${taskList.length} tasks</div>
   return `
     <div class='task-list-footer ${!taskList.length ? 'empty' : ''}'>
       <div class='filters'>
         <div class='filter all ${filter === 'all' ? 'active' : ''}'>Tutti</div>
         <div class='filter completed ${filter === 'completed' ? 'active' : ''}'>Completati</div>
-        <div class='filter uncompleted ${filter === 'uncompleted' ? 'active' : ''}'>Da fare</div>
+        <div class='filter uncompleted ${filter === 'todo' ? 'active' : ''}'>Da fare</div>
       </div>
       <div class='clear'>Cancella tutti</div>
     </div>
