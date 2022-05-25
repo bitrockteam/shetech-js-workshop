@@ -38,7 +38,7 @@ function redrawTasks(taskList = []) {
     $taskList.insertAdjacentHTML('beforeend', $task)
   })
 
-  if (!tasks.length && !taskList.length) return
+  if (!tasks?.length && !taskList.length) return
 
   const $footer = renderFooter(taskList, filter)
   $taskList.insertAdjacentHTML('beforeend', $footer)
