@@ -30,17 +30,15 @@ $form.addEventListener('submit', (event) => {
   $input.value = ''
 })
 
-function redrawTasks(tasks = []) {
+function redrawTasks(taskList = []) {
   $taskList.innerHTML = ''
 
-  tasks.forEach(task => {
+  taskList.forEach(task => {
     const $task = renderTask(task)
     $taskList.insertAdjacentHTML('beforeend', $task)
   })
 
-  if (!tasks.length) return
-
-  const $footer = renderFooter(tasks)
+  const $footer = renderFooter(taskList, filter)
   $taskList.insertAdjacentHTML('beforeend', $footer)
 
   const $filters = document.querySelector('.filters')
@@ -59,12 +57,14 @@ function redrawTasks(tasks = []) {
     filter = 'completed'
     const completedTasks = getCompletedTasks(tasks)
     redrawTasks(completedTasks)
+    renderCounter(tasks)
   })
 
   $uncompleted.addEventListener('click', () => {
     filter = 'todo'
     const uncompletedTasks = getUncompletedTasks(tasks)
     redrawTasks(uncompletedTasks)
+    renderCounter(tasks)
   })
 
   $clear.addEventListener('click', () => {
@@ -152,7 +152,7 @@ function clearTasks(tasks) {
 function renderCounter(tasks) {
   const $counter = document.createElement('div')
   $counter.classList.add('counter')
-  $counter.innerHTML = `${tasks.length} tasks`
+  $counter.innerHTML = `${tasks.length} tasks totali`
 
   $taskList.append($counter)
 }
