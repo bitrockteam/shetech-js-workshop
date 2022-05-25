@@ -1,4 +1,4 @@
-import { TaskStatus } from "../app.mjs"
+import { TaskStatus } from "../app.js"
 
 // render functions
 export function renderTask(task) {

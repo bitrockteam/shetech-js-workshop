@@ -1,4 +1,4 @@
-import { renderTask, renderFooter } from './library/index.mjs'
+import { renderTask, renderFooter } from './library/index.js'
 
 let tasks = []
 export let filter = 'all'
@@ -38,6 +38,8 @@ function redrawTasks(taskList = []) {
     $taskList.insertAdjacentHTML('beforeend', $task)
   })
 
+  if (!tasks?.length) return
+
   const $footer = renderFooter(taskList, filter)
   $taskList.insertAdjacentHTML('beforeend', $footer)
 
@@ -68,7 +70,7 @@ function redrawTasks(taskList = []) {
   })
 
   $clear.addEventListener('click', () => {
-    tasks = clearTasks(tasks)
+    tasks = []
     redrawTasks(tasks)
     renderCounter(tasks)
   })
@@ -82,10 +84,10 @@ function watchTasks() {
 
   $tasks.forEach($task => {
     const id = $task.getAttribute('id')
-    const $taskToggle = $task.querySelector('.toggle')
+    const $toggleTask = $task.querySelector('.toggle')
     const $deleteTask = $task.querySelector('.delete-task')
 
-    $taskToggle.addEventListener('click', () => {
+    $toggleTask.addEventListener('click', () => {
       tasks = toggleTaskStatus(tasks, id)
       redrawTasks(tasks)
       renderCounter(tasks)
@@ -140,11 +142,6 @@ function getUncompletedTasks(tasks) {
 
 function deleteTask(tasks, id) {
   return tasks.filter(task => task.id !== Number(id))
-}
-
-function clearTasks(tasks) {
-  tasks = []
-  return tasks
 }
 
 
