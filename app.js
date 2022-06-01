@@ -24,13 +24,13 @@ $form.addEventListener('submit', (event) => {
 
   filter = 'all'
   tasks = createTask(tasks, task)
-  redrawTasks(tasks)
+  renderTasks(tasks)
   renderCounter(tasks)
 
   $input.value = ''
 })
 
-function redrawTasks(taskList = []) {
+function renderTasks(taskList = []) {
   $taskList.innerHTML = ''
 
   taskList.forEach(task => {
@@ -51,27 +51,27 @@ function redrawTasks(taskList = []) {
 
   $all.addEventListener('click', () => {
     filter = 'all'
-    redrawTasks(tasks)
+    renderTasks(tasks)
     renderCounter(tasks)
   })
 
   $completed.addEventListener('click', () => {
     filter = 'completed'
     const completedTasks = getCompletedTasks(tasks)
-    redrawTasks(completedTasks)
+    renderTasks(completedTasks)
     renderCounter(tasks)
   })
 
   $uncompleted.addEventListener('click', () => {
     filter = 'todo'
     const uncompletedTasks = getUncompletedTasks(tasks)
-    redrawTasks(uncompletedTasks)
+    renderTasks(uncompletedTasks)
     renderCounter(tasks)
   })
 
   $clear.addEventListener('click', () => {
     tasks = []
-    redrawTasks(tasks)
+    renderTasks(tasks)
     renderCounter(tasks)
   })
 
@@ -89,13 +89,13 @@ function watchTasks() {
 
     $toggleTask.addEventListener('click', () => {
       tasks = toggleTaskStatus(tasks, id)
-      redrawTasks(tasks)
+      renderTasks(tasks)
       renderCounter(tasks)
     })
 
     $deleteTask.addEventListener('click', () => {
       tasks = deleteTask(tasks, id)
-      redrawTasks(tasks)
+      renderTasks(tasks)
       renderCounter(tasks)
     })
   })
@@ -105,10 +105,10 @@ function watchTasks() {
 
 
 // Item Actions
-function createTask(tasks, task) {
+function createTask(tasks, title) {
   const newTask = {
     id: Date.now(),
-    title: task,
+    title,
     status: TaskStatus.TODO,
   }
 
