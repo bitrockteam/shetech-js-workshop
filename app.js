@@ -102,30 +102,59 @@ function watchTasks() {
 }
 
 
-
-
-// Item Actions
+/**
+ * La funzione createTask riceve due parametri in input, il primo è la lista dei task e il secondo è il titolo del task.
+ * Questa funzione deve tornare la lista dei task con il nuovo task aggiunto.
+ * Il nuovo task deve avere una struttura ad oggetto, con i seguenti campi: id, title, status.
+ * L'id deve essere univoco, utilizzare la seguente istruzione Date.now().
+ * Il titolo è la descrizione del todo.
+ * Lo status può assumere i seguenti valori: todo, completed
+*/
 function createTask(tasks, task) {
 }
 
+/**
+ * La funzione toggleTaskStatus riceve due parametri in input, il primo è la lista dei task e il secondo è l'id del task da segnare come fatto.
+ * Questa funzione deve ritornare la lista dei task aggiornata.
+ */
 function toggleTaskStatus(tasks, id) {
 }
 
+/**
+ * La funzione findTask riceve due parametri in input, il primo è la lista dei task e il secondo è l'id del task da trovare.
+ * Deve ritornare il task con id passato come parametro.
+ */
 function findTask(tasks, id) {
 }
 
+/**
+ * La funzione getCompletedTasks riceve in input la lista dei task e deve ritornare solo i task completati.
+ */
 function getCompletedTasks(tasks) {
 }
 
+/**
+ * La funzione getUncompletedTasks riceve in input la lista dei task e deve ritornare solo i task che non sono stati ancora completati.
+ */
 function getUncompletedTasks(tasks) {
 }
 
+/**
+ * La funzione deleteTask riceve due parametri in input, il primo è la lista dei task e il secondo è l'id del task da eliminare. \
+ * Questa funzione deve ritornare la lista dei task senza il task da rimuovere.
+ */
 function deleteTask(tasks, id) {
 }
 
+/**
+ * La funzione clearTasks riceve in input la lista dei task e deve ritornare una lista vuota.
+ */
 function clearTasks(tasks) {
 }
 
-// Render counter
+/**
+ * La funzione renderCounter riceve la lista dei task in input e deve poter mostrare sotto la lista dei task il numero totale dei tasks.
+ * N.B: è necessario utilizzare i metodi di manipolazione del DOM e non utilizzare i tag HTML.
+ */
 function renderCounter(tasks) {
 }
